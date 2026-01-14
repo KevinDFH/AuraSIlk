@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxaxwbpwerkwg"]
+
+[ext_resource type="Texture2D" uid="uid://04f1kkcsry3k" path="res://icon.svg" id="1_j7oib"]
+[ext_resource type="Script" uid="uid://dya77w55w1yum" path="res://Codes/SM/interactuable.gd" id="1_nftbu"]
+[ext_resource type="PackedScene" uid="uid://c30h0hm6ajl4u" path="res://Actors/Player/Player.tscn" id="1_s8y6l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7oib"]
+size = Vector2(3.94808, 20)
+
+[node name="TestRoom1" type="Node2D"]
+
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+position = Vector2(176, 80)
+scale = Vector2(1176.69, -41.4732)
+script = ExtResource("1_nftbu")
+
+[node name="Icon" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(-0.00509906, 0.361679)
+scale = Vector2(0.000849844, -0.0241119)
+texture = ExtResource("1_j7oib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-0.00424924, 0.313455)
+scale = Vector2(0.033, -0.079)
+shape = SubResource("RectangleShape2D_j7oib")
+
+[node name="Player" parent="." instance=ExtResource("1_s8y6l")]
+position = Vector2(312, 128)
+scale = Vector2(0.095, 0.095)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-1031.58, -115.789)
+scale = Vector2(12386.2, -436.56)
+zoom = Vector2(2.265, 2.265)

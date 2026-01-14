@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://c30h0hm6ajl4u"]
+
+[ext_resource type="Script" uid="uid://bybakjgegkhpk" path="res://Actors/Player/Player.gd" id="1_yqfyh"]
+[ext_resource type="PackedScene" uid="uid://dsjksuqtcimhf" path="res://Codes/SM/state_machine.tscn" id="2_urha2"]
+[ext_resource type="Texture2D" uid="uid://i7v3lkwgl7wc" path="res://Actors/Player/Sprites/7 sin título_20250907192928.png" id="2_vywg6"]
+[ext_resource type="Script" uid="uid://bugenrlaah3hl" path="res://Actors/Player/States/PlayerStateBase.gd" id="3_yqfyh"]
+[ext_resource type="Script" uid="uid://cjllns6bwlhhn" path="res://Actors/Player/States/StatesWorld/WorldIdle.gd" id="5_vywg6"]
+[ext_resource type="Script" uid="uid://cx7jxeto800w6" path="res://Actors/Player/States/StatesInventory/InventoryMain.gd" id="6_kkbrm"]
+[ext_resource type="Script" uid="uid://brlwxhjkjgavm" path="res://Actors/Player/States/StatesInventory/InventoryStats.gd" id="7_6e37q"]
+[ext_resource type="Script" uid="uid://drlmb36jmyplt" path="res://Actors/Player/States/StatesInventory/InventoryItems.gd" id="8_qhy2x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4x03u"]
+radius = 1.02
+height = 11.8
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_yqfyh")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(11, 55)
+texture = ExtResource("2_vywg6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 74)
+scale = Vector2(100, 100)
+shape = SubResource("CapsuleShape2D_4x03u")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_urha2")]
+initial_state = NodePath("WorldIdle")
+
+[node name="PlayerStateBase" type="Node" parent="StateMachine"]
+script = ExtResource("3_yqfyh")
+
+[node name="WorldIdle" type="Node" parent="StateMachine"]
+script = ExtResource("5_vywg6")
+velocidad_base = 200.0
+velocidad_correr = 350.0
+
+[node name="InventoryMain" type="Node" parent="StateMachine"]
+script = ExtResource("6_kkbrm")
+velocidad_base = null
+velocidad_correr = null
+
+[node name="InventoryStats" type="Node" parent="StateMachine"]
+script = ExtResource("7_6e37q")
+velocidad_base = null
+velocidad_correr = null
+
+[node name="InventoryItems" type="Node" parent="StateMachine"]
+script = ExtResource("8_qhy2x")
+velocidad_base = null
+velocidad_correr = null
+
+[node name="Interactor" type="RayCast2D" parent="."]
+position = Vector2(2, 35)
+target_position = Vector2(-16, 1301)

@@ -1,0 +1,121 @@
+[gd_scene load_steps=21 format=3 uid="uid://c30h0hm6ajl4u"]
+
+[ext_resource type="Script" uid="uid://bybakjgegkhpk" path="res://Actors/Player/Player.gd" id="1_yqfyh"]
+[ext_resource type="Texture2D" uid="uid://dt8djqdk6iedp" path="res://Actors/Player/Sprites/battleskin.png" id="2_ujyek"]
+[ext_resource type="Texture2D" uid="uid://dqwfatru0t5ea" path="res://Actors/Player/Sprites/7 sin título_20250823231433.png" id="2_upr3p"]
+[ext_resource type="PackedScene" uid="uid://dsjksuqtcimhf" path="res://Codes/SM/state_machine.tscn" id="2_urha2"]
+[ext_resource type="Texture2D" uid="uid://i7v3lkwgl7wc" path="res://Actors/Player/Sprites/7 sin título_20250907192928.png" id="2_vywg6"]
+[ext_resource type="Script" uid="uid://bugenrlaah3hl" path="res://Actors/Player/States/PlayerStateBase.gd" id="3_yqfyh"]
+[ext_resource type="Script" uid="uid://cjllns6bwlhhn" path="res://Actors/Player/States/StatesWorld/WorldIdle.gd" id="5_vywg6"]
+[ext_resource type="Script" uid="uid://cx7jxeto800w6" path="res://Actors/Player/States/StatesInventory/InventoryMain.gd" id="6_kkbrm"]
+[ext_resource type="Script" uid="uid://brlwxhjkjgavm" path="res://Actors/Player/States/StatesInventory/InventoryStats.gd" id="7_6e37q"]
+[ext_resource type="Script" uid="uid://drlmb36jmyplt" path="res://Actors/Player/States/StatesInventory/InventoryItems.gd" id="8_qhy2x"]
+[ext_resource type="Script" uid="uid://q6lvvdsmiiuq" path="res://Actors/Player/States/StatesWorld/WorldInteract.gd" id="9_6e37q"]
+[ext_resource type="Script" uid="uid://d6ue6nwjbqah" path="res://Actors/Player/States/StatesBattle/BattleIdle.gd" id="10_qhy2x"]
+[ext_resource type="Script" uid="uid://sr3i6txmdbvh" path="res://Actors/Player/States/StatesBattle/BattleDash.gd" id="11_gh11b"]
+[ext_resource type="Script" uid="uid://c5cvo66lpq8u6" path="res://Actors/Player/States/StatesBattle/BattleDead.gd" id="14_8np4b"]
+[ext_resource type="Texture2D" uid="uid://dsutsldjaebnj" path="res://Actors/Player/Sprites/default.png" id="14_fllei"]
+[ext_resource type="SpriteFrames" uid="uid://d3ouwjmfsojms" path="res://Actors/Player/Sprites/world_frames.tres" id="15_n45d6"]
+[ext_resource type="Script" uid="uid://wtf5mcfv0fib" path="res://Actors/Player/States/StatesTransition/BattleEnter.gd" id="16_m1t7r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4x03u"]
+radius = 0.541909
+height = 1.33701
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ujyek"]
+radius = 198.917
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fllei"]
+radius = 639.282
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_yqfyh")
+
+[node name="7SinTítulo(1)" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-3, 2)
+texture = ExtResource("2_ujyek")
+
+[node name="SpriteBattle" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 2
+position = Vector2(3, -3)
+texture = ExtResource("2_upr3p")
+
+[node name="SpriteWorld" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 2
+position = Vector2(5, -7)
+texture = ExtResource("2_vywg6")
+
+[node name="CollisionWorld" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 116)
+rotation = -1.57846
+scale = Vector2(96.025, 95.756)
+shape = SubResource("CapsuleShape2D_4x03u")
+
+[node name="CollisionBattle" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+scale = Vector2(0.455, 0.455)
+shape = SubResource("CircleShape2D_ujyek")
+
+[node name="StateMachine" parent="." instance=ExtResource("2_urha2")]
+
+[node name="PlayerStateBase" type="Node" parent="StateMachine"]
+script = ExtResource("3_yqfyh")
+
+[node name="WorldIdle" type="Node" parent="StateMachine"]
+script = ExtResource("5_vywg6")
+velocidad_correr = 350.0
+
+[node name="InventoryMain" type="Node" parent="StateMachine"]
+script = ExtResource("6_kkbrm")
+
+[node name="InventoryStats" type="Node" parent="StateMachine"]
+script = ExtResource("7_6e37q")
+
+[node name="InventoryItems" type="Node" parent="StateMachine"]
+script = ExtResource("8_qhy2x")
+
+[node name="WorldInteract" type="Node" parent="StateMachine"]
+script = ExtResource("9_6e37q")
+
+[node name="BattleIdle" type="Node" parent="StateMachine"]
+script = ExtResource("10_qhy2x")
+metadata/_custom_type_script = "uid://d6ue6nwjbqah"
+
+[node name="BattleDash" type="Node" parent="StateMachine"]
+script = ExtResource("11_gh11b")
+
+[node name="BattleDead" type="Node" parent="StateMachine"]
+script = ExtResource("14_8np4b")
+metadata/_custom_type_script = "uid://c5cvo66lpq8u6"
+
+[node name="BattleEnter" type="Node" parent="StateMachine"]
+script = ExtResource("16_m1t7r")
+metadata/_custom_type_script = "uid://wtf5mcfv0fib"
+
+[node name="Interactor" type="RayCast2D" parent="."]
+position = Vector2(2, 35)
+
+[node name="DashBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashBox"]
+position = Vector2(-2, 3)
+scale = Vector2(0.45, 0.45)
+shape = SubResource("CircleShape2D_fllei")
+
+[node name="Prubea3Mini" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-7.62939e-06, -1.90735e-06)
+scale = Vector2(0.76324, 0.775701)
+texture = ExtResource("14_fllei")
+
+[node name="7SinTítulo20250907192928" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(498, -19)
+scale = Vector2(0.471289, 0.380469)
+texture = ExtResource("2_vywg6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("15_n45d6")

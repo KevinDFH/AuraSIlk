@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4ynroag2xcxl"]
+
+[ext_resource type="Script" uid="uid://bv7eslj1lbl2a" path="res://Actors/Player/Skins/SkinBattle.gd" id="1_6s8v1"]
+[ext_resource type="Texture2D" uid="uid://dqwfatru0t5ea" path="res://Actors/Player/Sprites/7 sin título_20250823231433.png" id="2_6s8v1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8np4b"]
+size = Vector2(3.91965, 4.59)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6s8v1"]
+radius = 223.79
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6s8v1"]
+radius = 320.0
+height = 892.0
+
+[node name="SkinWorld" type="Node2D"]
+script = ExtResource("1_6s8v1")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 11)
+texture = ExtResource("2_6s8v1")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(1.10845, 412.888)
+rotation = -1.57846
+scale = Vector2(100, 99.72)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_8np4b")
+
+[node name="ParryZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParryZone"]
+position = Vector2(4, 429)
+scale = Vector2(3.321, 3.321)
+shape = SubResource("CircleShape2D_6s8v1")
+
+[node name="Cuerpo" type="CollisionShape2D" parent="."]
+position = Vector2(3, 183)
+shape = SubResource("CapsuleShape2D_6s8v1")
