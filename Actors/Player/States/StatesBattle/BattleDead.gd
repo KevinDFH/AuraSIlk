@@ -1,20 +1,17 @@
-extends PlayerStateBase
+extends StateTransitionBase
 class_name BattleDead
 
-@export var death_time := 2
+@export var death_time := 1.5
 
-func enter(_msg := {}) -> void:
-	player.velocity = Vector2.ZERO
-	print("☠️ Jugador ha muerto")
+func enter(msg := {}) -> void:
+	print("☠️ [BattleDead] El jugador ha muerto")
 
-	_toggle_battle_collisions(false)
-	_toggle_world_collisions(false)
-	_toggle_interactor(false)
-	_toggle_dashbox(false)
+	transition_time = death_time
+	anim_action = "death"   # luego existirá
+	anim_direction = "down"
 
-	player.set_invulnerable(true)
-	#player.play_anim("death", "down") # si existe, si no, default
+	super.enter(msg)
 
-	await get_tree().create_timer(death_time).timeout
-
-	GameManager.emit_signal("battle_ended", "player_dead")
+func transition_finished() -> void:
+	print("[BattleDead] Derrota confirmada")
+	GameManager.finalizar_batalla("player_dead")

@@ -9,18 +9,14 @@ class_name BattleIdle
 # ===============================
 func handle_input(event: InputEvent) -> void:
 	super.handle_input(event)
-	
-	if event.is_action_pressed("ui_action"):
-		player.vida=0
 
-	elif event.is_action_pressed("ui_speed"):
+	if event.is_action_pressed("ui_speed"):
 		print("¡Dash!")
 		state_machine.push_state($"../BattleDash")
 		start_dash_cooldown()
 
 	elif event.is_action_pressed("ui_support"):
-		print("Intentas convencer...") 
-
+		print("Intentas convencer...")
 # ===============================
 #   UPDATE
 # ===============================
@@ -51,3 +47,4 @@ func exit() -> void:
 	_toggle_world_collisions(true)
 	_toggle_interactor(true)
 	_toggle_dashbox(true)
+

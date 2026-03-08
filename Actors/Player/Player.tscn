@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c30h0hm6ajl4u"]
+[gd_scene load_steps=22 format=3 uid="uid://c30h0hm6ajl4u"]
 
 [ext_resource type="Script" uid="uid://bybakjgegkhpk" path="res://Actors/Player/Player.gd" id="1_yqfyh"]
 [ext_resource type="Texture2D" uid="uid://dt8djqdk6iedp" path="res://Actors/Player/Sprites/battleskin.png" id="2_ujyek"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://c5cvo66lpq8u6" path="res://Actors/Player/States/StatesBattle/BattleDead.gd" id="14_8np4b"]
 [ext_resource type="Texture2D" uid="uid://dsutsldjaebnj" path="res://Actors/Player/Sprites/default.png" id="14_fllei"]
 [ext_resource type="SpriteFrames" uid="uid://d3ouwjmfsojms" path="res://Actors/Player/Sprites/world_frames.tres" id="15_n45d6"]
+[ext_resource type="Script" uid="uid://y4ouro7sgq0y" path="res://Actors/Player/States/StatesBattle/BattleVictory.gd" id="16_iwmb3"]
 [ext_resource type="Script" uid="uid://wtf5mcfv0fib" path="res://Actors/Player/States/StatesTransition/BattleEnter.gd" id="16_m1t7r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4x03u"]
@@ -29,6 +30,7 @@ radius = 198.917
 radius = 639.282
 
 [node name="Player" type="CharacterBody2D"]
+texture_filter = 3
 script = ExtResource("1_yqfyh")
 
 [node name="7SinTítulo(1)" type="Sprite2D" parent="."]
@@ -44,7 +46,7 @@ texture = ExtResource("2_upr3p")
 
 [node name="SpriteWorld" type="Sprite2D" parent="."]
 visible = false
-texture_filter = 2
+texture_filter = 3
 position = Vector2(5, -7)
 texture = ExtResource("2_vywg6")
 
@@ -95,6 +97,10 @@ metadata/_custom_type_script = "uid://c5cvo66lpq8u6"
 script = ExtResource("16_m1t7r")
 metadata/_custom_type_script = "uid://wtf5mcfv0fib"
 
+[node name="BattleVictory" type="Node" parent="StateMachine"]
+script = ExtResource("16_iwmb3")
+metadata/_custom_type_script = "uid://y4ouro7sgq0y"
+
 [node name="Interactor" type="RayCast2D" parent="."]
 position = Vector2(2, 35)
 
@@ -118,4 +124,6 @@ scale = Vector2(0.471289, 0.380469)
 texture = ExtResource("2_vywg6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 6
+scale = Vector2(0.57, 0.57)
 sprite_frames = ExtResource("15_n45d6")
