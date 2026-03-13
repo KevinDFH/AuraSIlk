@@ -38,6 +38,8 @@ func _aplicar_recompensas() -> void:
 	if rewards.has("karma"):
 		player.karma += rewards.karma
 
+	player.save_stats()
+
 	print("💰 Dinero:", rewards.get("money", 0))
 	print("⚖️ Karma:", rewards.get("karma", 0))
 
@@ -45,4 +47,5 @@ func _abrir_menu_recompensas() -> void:
 	print("Recompensas obtenidas")
 	print("Items:", rewards.get("items", []))
 
+	player.save_stats()
 	GameManager.finalizar_batalla("victory_" + resolution)

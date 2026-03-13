@@ -14,4 +14,7 @@ func enter(msg := {}) -> void:
 
 func transition_finished() -> void:
 	print("[BattleDead] Derrota confirmada")
-	GameManager.finalizar_batalla("player_dead")
+	GameManager.terminar_batalla("player_dead")
+	var controlador := get_tree().get_first_node_in_group("battle_controller")
+	if controlador and controlador.has_method("_on_dead_transition_finished"):
+		controlador._on_dead_transition_finished()

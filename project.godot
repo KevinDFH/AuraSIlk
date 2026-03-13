@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://Codes/Game_Manager.gd"
+SceneManager="*res://Codes/Scene_Manager.gd"
 
 [display]
 

@@ -26,4 +26,4 @@ func physics_update(delta: float) -> void:
 
 
 func _actualizar_direccion_raycast() -> void:
-	interactor.target_position = direccion_actual*1000
+	interactor.target_position = direccion_actual * 250

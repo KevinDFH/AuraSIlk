@@ -1,81 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://dxaxwbpwerkwg"]
+[gd_scene format=3 uid="uid://dxaxwbpwerkwg"]
 
+[ext_resource type="Script" uid="uid://c0nilg4ea0qn0" path="res://Rooms/controllers/test_room_1.gd" id="1_e414u"]
 [ext_resource type="Texture2D" uid="uid://04f1kkcsry3k" path="res://icon.svg" id="1_j7oib"]
-[ext_resource type="Script" uid="uid://dya77w55w1yum" path="res://Codes/SM/interactuable.gd" id="1_nftbu"]
 [ext_resource type="PackedScene" uid="uid://c30h0hm6ajl4u" path="res://Actors/Player/Player.tscn" id="1_s8y6l"]
 [ext_resource type="Texture2D" uid="uid://1juolwcqwylf" path="res://Actors/Player/Sprites/fondo.png" id="1_vy6qj"]
-[ext_resource type="Texture2D" uid="uid://cwrj0vyrb08kc" path="res://Tileset/prueba.png" id="3_w1eew"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_witou"]
-texture = ExtResource("3_w1eew")
-texture_region_size = Vector2i(350, 350)
-0:0/0 = 0
-0:0/0/terrain_set = 0
-0:0/0/terrain = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-175, -175, -189.875, 203.998, -61.1994, 175, -58.0609, -40.7996, 175, -56.4917, 175, -56.4917, 175, -175)
-0:0/0/terrains_peering_bit/right_side = 0
-0:0/0/terrains_peering_bit/bottom_side = 0
-1:0/0 = 0
-1:0/0/terrain_set = 0
-1:0/0/terrain = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-175, -62.7686, -174.183, -191.444, -174.183, -191.444, 175, -175, 175, -56.4917)
-1:0/0/terrains_peering_bit/right_side = 0
-1:0/0/terrains_peering_bit/bottom_side = 0
-1:0/0/terrains_peering_bit/left_side = 0
-2:0/0 = 0
-2:0/0/terrain_set = 0
-2:0/0/terrain = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(175, -175, -203.998, -189.875, -175, -61.1994, 40.7996, -58.0609, 56.4917, 175, 56.4917, 175, 175, 175)
-2:0/0/terrains_peering_bit/bottom_side = 0
-2:0/0/terrains_peering_bit/left_side = 0
-0:1/0 = 0
-0:1/0/terrain_set = 0
-0:1/0/terrain = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-62.7686, 175, -191.444, 174.183, -191.444, 174.183, -175, -175, -56.4917, -175)
-0:1/0/terrains_peering_bit/right_side = 0
-0:1/0/terrains_peering_bit/bottom_side = 0
-0:1/0/terrains_peering_bit/top_side = 0
-1:1/0 = 0
-1:1/0/terrain_set = 0
-1:1/0/terrain = 0
-1:1/0/terrains_peering_bit/right_side = 0
-1:1/0/terrains_peering_bit/bottom_side = 0
-1:1/0/terrains_peering_bit/left_side = 0
-1:1/0/terrains_peering_bit/top_side = 0
-2:1/0 = 0
-2:1/0/terrain_set = 0
-2:1/0/terrain = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(62.7686, 175, 191.444, 174.183, 191.444, 174.183, 175, -175, 56.4917, -175)
-2:1/0/terrains_peering_bit/bottom_side = 0
-2:1/0/terrains_peering_bit/left_side = 0
-2:1/0/terrains_peering_bit/top_side = 0
-0:2/0 = 0
-0:2/0/terrain_set = 0
-0:2/0/terrain = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-175, 175, 203.998, 189.875, 175, 61.1994, -40.7996, 58.0609, -56.4917, -175, -56.4917, -175, -175, -175)
-0:2/0/terrains_peering_bit/right_side = 0
-0:2/0/terrains_peering_bit/top_side = 0
-1:2/0 = 0
-1:2/0/terrain_set = 0
-1:2/0/terrain = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-175, 62.7686, -174.183, 191.444, -174.183, 191.444, 175, 175, 175, 56.4917)
-1:2/0/terrains_peering_bit/right_side = 0
-1:2/0/terrains_peering_bit/left_side = 0
-1:2/0/terrains_peering_bit/top_side = 0
-2:2/0 = 0
-2:2/0/terrain_set = 0
-2:2/0/terrain = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(175, 175, -203.998, 189.875, -175, 61.1994, 40.7996, 58.0609, 56.4917, -175, 56.4917, -175, 175, -175)
-2:2/0/terrains_peering_bit/left_side = 0
-2:2/0/terrains_peering_bit/top_side = 0
-
-[sub_resource type="TileSet" id="TileSet_uob17"]
-tile_size = Vector2i(350, 350)
-physics_layer_0/collision_layer = 1
-terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "Terrain 0"
-terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_witou")
+[ext_resource type="Script" uid="uid://d4n1xsj4cd20b" path="res://Codes/GameInteract/InteractuableBatalla.gd" id="3_e414u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7oib"]
 size = Vector2(3.94808, 20)
@@ -83,49 +12,46 @@ size = Vector2(3.94808, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_nftbu"]
 radius = 15.0333
 
-[node name="TestRoom1" type="Node2D"]
+[node name="TestRoom1" type="Node2D" unique_id=1850898126]
+script = ExtResource("1_e414u")
 
-[node name="Fondo" type="Sprite2D" parent="."]
-position = Vector2(1930, 1035)
-scale = Vector2(1.033, 1)
+[node name="Fondo" type="Sprite2D" parent="." unique_id=580177836]
+position = Vector2(961.99994, 537.5)
+scale = Vector2(0.5026042, 0.5023148)
 texture = ExtResource("1_vy6qj")
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="Fondo"]
-visible = false
-tile_map_data = PackedByteArray("AAABAP7/AAABAAAAAAABAP//AAABAAEAAAACAP//AAABAAEAAAACAP7/AAABAAAAAAAAAP//AAABAAEAAAAAAP7/AAAAAAAAAAAAAAAAAAABAAEAAAAAAAEAAAABAAEAAAABAAAAAAABAAEAAAACAAAAAAABAAEAAAABAAEAAAABAAEAAAD//wEAAAABAAEAAAD//wAAAAABAAEAAAD//wIAAAABAAEAAAAAAAIAAAABAAEAAAABAAIAAAABAAEAAAD+/wEAAAABAAEAAAD9/wEAAAABAAEAAAD9/wAAAAABAAEAAAD8/wAAAAABAAEAAAD8/wEAAAABAAEAAAD8/wIAAAABAAEAAAD9/wIAAAABAAEAAAD+/wIAAAABAAEAAAD+/wAAAAABAAEAAAD+////AAABAAEAAAD9////AAABAAEAAAD8////AAABAAAAAAD9//7/AAAAAAAAAAD+//7/AAACAAAAAAD/////AAABAAAAAAD7////AAABAAAAAAD6////AAABAAEAAAD6/wAAAAABAAEAAAD6/wEAAAABAAEAAAD6/wIAAAAAAAIAAAD7/wIAAAABAAIAAAD7/wEAAAABAAEAAAD7/wAAAAABAAEAAAACAAEAAAABAAEAAAACAAIAAAABAAEAAAADAAIAAAABAAIAAAAEAAIAAAACAAIAAAAEAAEAAAABAAEAAAAFAAEAAAACAAIAAAAEAAAAAAACAAEAAAAEAP//AAACAAEAAAADAAAAAAABAAEAAAADAAEAAAABAAEAAAADAP//AAABAAEAAAADAP7/AAABAAAAAAAEAP7/AAACAAAAAAD5/wAAAAABAAEAAAD5/wEAAAAAAAIAAAD4/wAAAAABAAIAAAD3/wAAAAABAAIAAAD3////AAABAAEAAAD3//7/AAABAAEAAAD3//3/AAABAAEAAAD4//3/AAABAAEAAAD5//3/AAABAAEAAAD5//7/AAABAAEAAAD5////AAABAAEAAAD4////AAABAAEAAAD4//7/AAABAAEAAAD4//z/AAABAAAAAAD2//z/AAABAAEAAAD2//3/AAAAAAEAAAD2////AAAAAAEAAAD2/wAAAAAAAAIAAAD2//7/AAAAAAEAAAD2//v/AAAAAAAAAAD3//v/AAACAAAAAAD3//z/AAABAAEAAAD5//z/AAABAAAAAAD6//z/AAACAAAAAAD6//3/AAACAAEAAAD6//7/AAACAAEAAAACAAUAAAACAAIAAAACAAQAAAACAAEAAAACAAMAAAACAAEAAAABAAUAAAABAAIAAAABAAQAAAABAAEAAAABAAMAAAABAAEAAAAAAAUAAAABAAIAAAAAAAQAAAABAAEAAAAAAAMAAAABAAEAAAD//wUAAAABAAIAAAD//wQAAAABAAEAAAD//wMAAAABAAEAAAD+/wUAAAABAAIAAAD+/wQAAAABAAEAAAD+/wMAAAABAAEAAAD9/wUAAAABAAIAAAD9/wQAAAABAAEAAAD9/wMAAAABAAEAAAD8/wUAAAAAAAIAAAD8/wQAAAAAAAEAAAD8/wMAAAAAAAEAAAA=")
-tile_set = SubResource("TileSet_uob17")
+[node name="RigidBody2D" type="StaticBody2D" parent="." unique_id=922529854]
+position = Vector2(323, 456.00006)
+rotation = -3.1415927
+scale = Vector2(4000, 150)
+script = ExtResource("3_e414u")
 
-[node name="RigidBody2D" type="StaticBody2D" parent="."]
-position = Vector2(572, 795)
-scale = Vector2(-5790.13, -194.627)
-script = ExtResource("1_nftbu")
-
-[node name="Icon" type="Sprite2D" parent="RigidBody2D"]
+[node name="Icon" type="Sprite2D" parent="RigidBody2D" unique_id=1428798422]
 position = Vector2(-0.00509906, 0.361679)
 scale = Vector2(0.000849844, -0.0241119)
 texture = ExtResource("1_j7oib")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=2018199826]
 position = Vector2(-0.00934826, 0.313455)
 scale = Vector2(0.033, -0.079)
 shape = SubResource("RectangleShape2D_j7oib")
 
-[node name="Player" parent="." instance=ExtResource("1_s8y6l")]
+[node name="Player" parent="." unique_id=1652536820 instance=ExtResource("1_s8y6l")]
 texture_filter = 2
-position = Vector2(3017, 842)
+position = Vector2(1412, 621)
+scale = Vector2(0.8, 0.8)
 
-[node name="balla" type="StaticBody2D" parent="."]
+[node name="balla" type="StaticBody2D" parent="." unique_id=923300195]
 collision_layer = 2
 
-[node name="Icon" type="Sprite2D" parent="balla"]
+[node name="Icon" type="Sprite2D" parent="balla" unique_id=303515485]
 position = Vector2(44, 25)
 scale = Vector2(0.289063, 0.25)
 texture = ExtResource("1_j7oib")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="balla"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="balla" unique_id=1955324479]
 position = Vector2(43, 25)
 shape = SubResource("CircleShape2D_nftbu")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1956, 1082)
-zoom = Vector2(0.48, 0.48)
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1513547009]
+position = Vector2(960, 523)

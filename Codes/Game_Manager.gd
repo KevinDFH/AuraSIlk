@@ -6,6 +6,8 @@ class_name Game_Manager
 # ====================================================
 signal battle_started(boss)
 signal battle_ended(result)
+signal battle_requested()
+signal battle_finished(result)
 signal game_paused()
 signal game_resumed()
 signal world_entered()
@@ -16,19 +18,26 @@ var game_mode := GameMode.WORLD
 # ====================================================
 # 🔹 VARIABLES GLOBALES / ESTADO DEL JUEGO
 # ====================================================
-var player: Player = null                # Referencia global al jugador actual
-var boss_actual: Node = null             # Referencia al jefe activo (si hay batalla)
+var player: Player = null
+var boss_actual: Node = null
 
-var karma: int = 0
-var dinero: int = 0
-var inventario: Array = []
+# Fuente persistente de los datos del jugador entre escenas.
+var player_data := {
+	"vida": 20,
+	"max_vida": 20,
+	"karma": 0,
+	"dinero": 0,
+	"inventario": []
+}
+
 var progreso_historia: Dictionary = {}
+var pending_battle: Dictionary = {}
+var return_scene_path: String = ""
+var return_position: Vector2 = Vector2.ZERO
 
 # ====================================================
 # 🔹 FUNCIONES PRINCIPALES DEL JUEGO
 # ====================================================
-
-# --- Inicia la batalla contra un jefe ---
 func iniciar_batalla(boss: Node) -> void:
 	if boss == null:
 		push_warning("Intento de iniciar batalla sin jefe válido.")
@@ -39,19 +48,18 @@ func iniciar_batalla(boss: Node) -> void:
 	game_mode = GameMode.BATTLE
 	emit_signal("battle_started", boss)
 
-# --- Termina una batalla ---
-func finalizar_batalla(resultado: String = "none") -> void:
-	print("🏁 Batalla finalizada con resultado:", resultado)
-	game_mode = GameMode.WORLD
-	emit_signal("battle_ended", resultado)
-	boss_actual = null
-	
+func solicitar_batalla(datos_batalla: Dictionary) -> void:
+	pending_battle = datos_batalla.duplicate(true)
+	emit_signal("battle_requested")
 
-# --- Cambiar al modo exploración (world) ---
+
+func terminar_batalla(resultado: String = "none") -> void:
+	emit_signal("battle_finished", resultado)
+	pending_battle.clear()
+	
 func entrar_al_mundo() -> void:
 	emit_signal("world_entered")
 
-# --- Control global de pausa ---
 func pausar_juego() -> void:
 	get_tree().paused = true
 	emit_signal("game_paused")
@@ -61,20 +69,20 @@ func reanudar_juego() -> void:
 	emit_signal("game_resumed")
 
 # ====================================================
-# 🔹 GESTIÓN GLOBAL DE KARMA, DINERO, INVENTARIO
+# 🔹 SINCRONIZACIÓN DEL JUGADOR
 # ====================================================
-func modificar_karma(valor: int) -> void:
-	karma += valor
-	print("🌀 Karma actual:", karma)
+func save_player_stats(vida: int, max_vida: int, karma: int, dinero: int, inventario: Array) -> void:
+	player_data["vida"] = vida
+	player_data["max_vida"] = max_vida
+	player_data["karma"] = karma
+	player_data["dinero"] = dinero
+	player_data["inventario"] = inventario.duplicate(true)
 
-func agregar_item(nombre: String) -> void:
-	inventario.append(nombre)
-	print("➕ Añadido al inventario:", nombre)
-
-func gastar_dinero(valor: int) -> void:
-	dinero = max(0, dinero - valor)
-	print("💰 Dinero restante:", dinero)
-
-func ganar_dinero(valor: int) -> void:
-	dinero += valor
-	print("💵 Dinero total:", dinero)
+func get_player_stats() -> Dictionary:
+	return {
+		"vida": player_data["vida"],
+		"max_vida": player_data["max_vida"],
+		"karma": player_data["karma"],
+		"dinero": player_data["dinero"],
+		"inventario": player_data["inventario"].duplicate(true)
+	}

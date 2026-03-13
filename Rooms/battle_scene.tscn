@@ -1,15 +1,36 @@
 [gd_scene format=3 uid="uid://bqd2uo2mgc7c2"]
 
-[node name="BattleScene" type="Node2D"]
+[ext_resource type="Script" uid="uid://c4cookutk0g2i" path="res://Rooms/controllers/battle_controller.gd" id="1_uo5tp"]
+[ext_resource type="Texture2D" uid="uid://04f1kkcsry3k" path="res://icon.svg" id="2_suout"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BattleScene" type="Node2D" unique_id=1877891013]
+script = ExtResource("1_uo5tp")
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+[node name="PlayerSpawn" type="Node2D" parent="." unique_id=66898034]
+position = Vector2(839, 888)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=144472918]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=1028239441]
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -454.0
+offset_left = -481.0
 grow_horizontal = 0
 grow_vertical = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 2
+size_flags_vertical = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer" unique_id=302272817]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer" unique_id=380079304]
+layout_mode = 2
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=2141288942]
+position = Vector2(552, 411)
+texture = ExtResource("2_suout")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=338627023]
+position = Vector2(960, 540)

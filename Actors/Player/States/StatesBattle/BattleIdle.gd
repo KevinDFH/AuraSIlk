@@ -16,7 +16,7 @@ func handle_input(event: InputEvent) -> void:
 		start_dash_cooldown()
 
 	elif event.is_action_pressed("ui_support"):
-		print("Intentas convencer...")
+		player.vida=0
 # ===============================
 #   UPDATE
 # ===============================
@@ -47,4 +47,3 @@ func exit() -> void:
 	_toggle_world_collisions(true)
 	_toggle_interactor(true)
 	_toggle_dashbox(true)
-

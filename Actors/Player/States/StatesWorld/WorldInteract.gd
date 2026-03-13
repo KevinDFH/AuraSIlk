@@ -1,19 +1,23 @@
 extends StateWorldBase
 class_name WorldInteract
 
+signal battle_requested(npc)
+
 # ===============================
 #   VARIABLES
 # ===============================
 var dialogo_actual: Array = []
 var indice_linea: int = 0
 var npc_origen: Node = null
-var data_msg := {}
+var debe_iniciar_batalla := false
+
 # ===============================
 #   CICLO DE VIDA DEL ESTADO
 # ===============================
 func enter(msg := {}) -> void:
 	print("🗨️ Entrando en modo interacción.")
-	data_msg = msg
+	indice_linea = 0
+	debe_iniciar_batalla = msg.get("iniciar_batalla", false)
 
 	if msg.has("dialogo"):
 		dialogo_actual = msg["dialogo"]
@@ -24,8 +28,6 @@ func enter(msg := {}) -> void:
 		_mostrar_linea_actual()
 	else:
 		print("(No hay diálogo para mostrar)")
-
-
 
 func exit() -> void:
 	print("🗨️ Saliendo del modo interacción.")
@@ -51,9 +53,8 @@ func avanzar_dialogo() -> void:
 	else:
 		print("💭 Fin del diálogo.")
 
-		# Aquí aprovechamos los datos guardados
-		if data_msg.has("iniciar_batalla") and npc_origen:
-			GameManager.iniciar_batalla(npc_origen)
+		if debe_iniciar_batalla and npc_origen:
+			emit_signal("battle_requested", npc_origen)
 		else:
 			state_machine.pop_state()
 

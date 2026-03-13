@@ -12,28 +12,30 @@ var esta_apuntado: bool = false
 #  MÉTODOS PRINCIPALES
 # ==========================
 
-# Llamado por el jugador cuando presiona el botón de interacción
-@export var boss: Node
-
 func interact(player):
 	print(nombre + ":")
 
 	var dialogo = [
-		"Así que has llegado hasta mí...",
+		"Asi que has llegado hasta mi...",
 		"Veamos si eres digno."
 	]
 
-	player.state_machine.push_state(WorldInteract.new(), {
+	var dialog_state := WorldInteract.new()
+	var current_scene := player.get_tree().current_scene
+
+	if current_scene and current_scene.has_method("_on_battle_requested"):
+		dialog_state.connect("battle_requested", Callable(current_scene, "_on_battle_requested"))
+
+	player.state_machine.push_state(dialog_state, {
 		"dialogo": dialogo,
 		"npc": self,
 		"iniciar_batalla": true
-		})
-# Opcional: si quieres mostrar feedback visual (por<zx ejemplo, que brille)
+	})
+
 func set_apuntado(valor: bool) -> void:
 	if valor != esta_apuntado:
 		esta_apuntado = valor
-		# Aquí podrías cambiar el sprite, el color, etc.
 		if valor:
-			modulate = Color(1, 1, 0.7) # leve brillo
+			modulate = Color(1, 1, 0.7)
 		else:
 			modulate = Color(1, 1, 1)

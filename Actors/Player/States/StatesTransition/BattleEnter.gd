@@ -2,17 +2,20 @@ extends StateTransitionBase
 class_name BattleEnter
 
 func enter(_msg := {}) -> void:
-	print("✨ [BattleEnter] Iniciando transición a combate")
+	print("[BattleEnter] Iniciando transicion a combate")
 
-	# Configuración básica de la transición
 	transition_time = 1.0
-	anim_action = ""        # Más adelante: "transform"
+	anim_action = ""
 	anim_direction = "down"
 
-	# Llamamos al comportamiento base (bloqueo, timer, etc.)
+	if player:
+		player.set_skin("battle")
+
 	super.enter(_msg)
 
 func transition_finished() -> void:
-	print("⚔️ [BattleEnter] Transición finalizada → entrando a BattleIdle")
-	# Cambiar al estado de combate
-	state_machine.change_state($"../BattleIdle")
+	print("[BattleEnter] Transicion finalizada")
+
+	var controlador := get_tree().get_first_node_in_group("world_controller")
+	if controlador and controlador.has_method("_on_battle_transition_finished"):
+		controlador._on_battle_transition_finished()
