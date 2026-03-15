@@ -18,9 +18,6 @@ border_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
 [node name="BattleScene" type="Node2D" unique_id=1877891013]
 script = ExtResource("1_uo5tp")
 
-[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1731606657]
-position = Vector2(684, 795)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=144472918]
 
 [node name="BattleUI" type="Control" parent="CanvasLayer" unique_id=1548904726]
@@ -162,3 +159,6 @@ scale = Vector2(-316.2394, 183.99353)
 [node name="CornerLeftBottom" type="Marker2D" parent="." unique_id=1328238688]
 position = Vector2(4, 846)
 scale = Vector2(-316.2394, 183.99353)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1731606657]
+position = Vector2(684, 795)

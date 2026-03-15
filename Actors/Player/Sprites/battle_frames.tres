@@ -1,6 +1,6 @@
-[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://0rxj6ftjlsck"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://0rxj6ftjlsck"]
 
-[ext_resource type="Texture2D" uid="uid://dqwfatru0t5ea" path="res://Actors/Player/Sprites/7 sin título_20250823231433.png" id="1_kymmp"]
+[ext_resource type="Texture2D" uid="uid://dt8djqdk6iedp" path="res://Actors/Player/Sprites/battleskin.png" id="1_kymmp"]
 
 [resource]
 animations = [{

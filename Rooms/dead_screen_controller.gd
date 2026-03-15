@@ -1,4 +1,4 @@
-extends Node2D
+extends   Control
 
 @onready var title_text: TextEdit = $TextEdit
 @onready var checkpoint_button: Button = $Button
