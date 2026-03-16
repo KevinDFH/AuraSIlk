@@ -19,6 +19,9 @@ var karma: int = 0
 var dinero: int = 0
 var inventario: Array = []
 
+# Battle Prototipe: fuentes de invulnerabilidad activas al mismo tiempo.
+var invulnerability_sources: Dictionary = {}
+
 # ===============================
 # 🔹 SISTEMA DE SKINS
 # ===============================
@@ -94,8 +97,32 @@ func play_anim(action: String, direction: String) -> void:
 		# anim.play(anim_name)
 		print("🎬 (Simulando animación):", anim_name)
 
+# Battle Prototipe: recibe el impacto del proyectil, resta vida y destruye la bala.
+func receive_projectile_hit(projectile: Node, damage: int) -> void:
+	if is_invulnerable():
+		return
+
+	vida = max(vida - damage, 0)
+	play_anim("hurt", "down")
+	print("Battle Prototipe: dano recibido ->", damage, "vida actual ->", vida)
+
+	if is_instance_valid(projectile):
+		projectile.queue_free()
+
+	set_invulnerable("hurt", true)
+	await get_tree().create_timer(0.2).timeout
+	set_invulnerable("hurt", false)
+
 # ===============================
 # 🔹 INVULNERABILIDAD
 # ===============================
-func set_invulnerable(valor: bool) -> void:
-	pass
+# Battle Prototipe: registra fuentes por nombre para soportar solapamiento (dash, hurt, buffs).
+func set_invulnerable(source: String, active: bool) -> void:
+	if active:
+		invulnerability_sources[source] = true
+	else:
+		invulnerability_sources.erase(source)
+
+# Battle Prototipe: consulta unica para saber si el jugador debe ignorar dano.
+func is_invulnerable() -> bool:
+	return not invulnerability_sources.is_empty()

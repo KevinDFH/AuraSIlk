@@ -37,7 +37,7 @@ func enter(_msg := {}) -> void:
 	# --- Desactivar colisiones del modo mundo ---
 	_toggle_world_collisions(false)
 	_toggle_interactor(false)
-	_toggle_dashbox(false)
+	_toggle_dashbox(true)
 
 func exit() -> void:
 	print("🏳️ Saliendo de BattleIdle")

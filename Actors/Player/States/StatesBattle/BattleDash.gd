@@ -1,7 +1,7 @@
 extends StateBattleBase
 class_name BattleDash
 
-@export var dash_speed: float = 600.0
+@export var dash_speed: float = 900.0
 @export var dash_duration: float = 0.15
 
 var dash_timer: float = 0.0
@@ -12,7 +12,7 @@ func enter(_msg := {}) -> void:
 	if not player:
 		return
 	print("⚡ Iniciando dash...")
-
+	player.set_invulnerable("dash", true)
 	var dir_input = obtener_direccion()
 	if dir_input != Vector2.ZERO:
 		direccion_dash = dir_input.normalized()
@@ -22,7 +22,6 @@ func enter(_msg := {}) -> void:
 		direccion_dash = Vector2.DOWN
 
 	player.velocity = direccion_dash * dash_speed
-	player.set_invulnerable(true)
 	is_dashing = true
 	dash_timer = dash_duration
 
@@ -38,12 +37,12 @@ func update(delta: float) -> void:
 
 func exit() -> void:
 	if player:
-		player.set_invulnerable(false)
+		player.set_invulnerable("dash", false)
 	is_dashing = false
 
 func _finalizar_dash() -> void:
 	is_dashing = false
 	player.velocity = Vector2.ZERO
-	player.set_invulnerable(false)
+	player.set_invulnerable("dash", false)
 	print("⏹️ Dash terminado.")
 	state_machine.pop_state()

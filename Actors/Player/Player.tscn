@@ -111,6 +111,7 @@ position = Vector2(-2, 84)
 position = Vector2(-2, 3)
 scale = Vector2(0.45, 0.45)
 shape = SubResource("CircleShape2D_fllei")
+debug_color = Color(0.8156863, 0, 0.20784314, 0.49803922)
 
 [node name="Prubea3Mini" type="Sprite2D" parent="." unique_id=1148339607]
 visible = false

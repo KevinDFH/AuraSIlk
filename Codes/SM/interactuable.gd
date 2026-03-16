@@ -21,7 +21,7 @@ func interact(player):
 	]
 
 	var dialog_state := WorldInteract.new()
-	var current_scene := player.get_tree().current_scene
+	var current_scene :Tree= player.get_tree().current_scene
 
 	if current_scene and current_scene.has_method("_on_battle_requested"):
 		dialog_state.connect("battle_requested", Callable(current_scene, "_on_battle_requested"))

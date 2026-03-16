@@ -12,7 +12,7 @@ func enter(_msg := {}) -> void:
 	
 	if player:
 		player.velocity = Vector2.ZERO
-		player.set_invulnerable(true)
+		player.set_invulnerable("trantition",true)
 
 	# Desactivar TODO
 	_toggle_world_collisions(false)
@@ -36,7 +36,7 @@ func update(delta: float) -> void:
 func exit() -> void:
 	_finished = true
 	if player:
-		player.set_invulnerable(false)
+		player.set_invulnerable("transition",false)
 
 func _run_timer() -> void:
 	if transition_time <= 0:
